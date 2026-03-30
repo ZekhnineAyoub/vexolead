@@ -19,7 +19,7 @@ export default function Hero({ onCtaClick }: HeroProps) {
           <span>+500 leads générés ce mois-ci</span>
         </div>
 
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+        <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
           <span className="text-white">Générez des clients qualifiés</span>
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
