@@ -7,9 +7,9 @@ export default function LeadForm() {
     email: '',
     phone: '',
     business: '',
-    budget: '',
     message: '',
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -17,23 +17,46 @@ export default function LeadForm() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    console.log('Form submitted:', formData);
-    setIsSuccess(true);
-    setIsSubmitting(false);
-
-    setTimeout(() => {
-      setIsSuccess(false);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        business: '',
-        budget: '',
-        message: '',
+    try {
+      const response = await fetch('https://vexolead-server.onrender.com/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phoneNumber: formData.phone,
+          profession: formData.business,
+          message: formData.message,
+        }),
       });
-    }, 3000);
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Erreur lors de l'envoi");
+      }
+
+      console.log('Form submitted:', data);
+      setIsSuccess(true);
+
+      setTimeout(() => {
+        setIsSuccess(false);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          business: '',
+          message: '',
+        });
+      }, 3000);
+    } catch (error) {
+      console.error('Erreur formulaire:', error);
+      alert("Une erreur s'est produite lors de l'envoi du formulaire.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -69,10 +92,10 @@ export default function LeadForm() {
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Commencez <span className="text-blue-400">dès aujourd'hui</span>
+            Commencez <span className="text-blue-400">dès aujourd&apos;hui</span>
           </h2>
           <p className="text-xl text-gray-400">
-            Remplissez ce formulaire et recevez votre plan d'action personnalisé sous 24h
+            Remplissez ce formulaire et recevez votre plan d&apos;action personnalisé sous 24h
           </p>
         </div>
 
@@ -147,28 +170,8 @@ export default function LeadForm() {
               </div>
 
               <div>
-                <label htmlFor="budget" className="block text-white font-medium mb-2">
-                  Budget mensuel <span className="text-red-400">*</span>
-                </label>
-                <select
-                  id="budget"
-                  name="budget"
-                  required
-                  value={formData.budget}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
-                >
-                  <option value="">Sélectionnez votre budget</option>
-                  <option value="500-1000">500€ - 1 000€</option>
-                  <option value="1000-2500">1 000€ - 2 500€</option>
-                  <option value="2500-5000">2 500€ - 5 000€</option>
-                  <option value="5000+">Plus de 5 000€</option>
-                </select>
-              </div>
-
-              <div>
                 <label htmlFor="message" className="block text-white font-medium mb-2">
-                  Message (optionnel)
+                  Message
                 </label>
                 <textarea
                   id="message"
