@@ -1,7 +1,10 @@
 import { useState, FormEvent } from 'react';
-import { Send, CheckCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Send } from 'lucide-react';
 
 export default function LeadForm() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -11,7 +14,6 @@ export default function LeadForm() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -38,19 +40,15 @@ export default function LeadForm() {
         throw new Error(data.message || "Erreur lors de l'envoi");
       }
 
-      console.log('Form submitted:', data);
-      setIsSuccess(true);
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        business: '',
+        message: '',
+      });
 
-      setTimeout(() => {
-        setIsSuccess(false);
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          business: '',
-          message: '',
-        });
-      }, 3000);
+      navigate('/thank-you');
     } catch (error) {
       console.error('Erreur formulaire:', error);
       alert("Une erreur s'est produite lors de l'envoi du formulaire.");
@@ -68,25 +66,6 @@ export default function LeadForm() {
     });
   };
 
-  if (isSuccess) {
-    return (
-      <section id="lead-form" className="py-20 px-4">
-        <div className="max-w-2xl mx-auto">
-          <div className="bg-gradient-to-br from-green-500/10 to-green-600/10 border border-green-500/30 rounded-2xl p-12 text-center">
-            <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <CheckCircle className="w-10 h-10 text-green-400" />
-            </div>
-            <h3 className="text-3xl font-bold text-white mb-4">Merci pour votre demande !</h3>
-            <p className="text-gray-300 text-lg">
-              Nous avons bien reçu vos informations. Notre équipe vous contactera dans les 24h pour
-              commencer à générer vos premiers leads.
-            </p>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section id="lead-form" className="py-20 px-4">
       <div className="max-w-2xl mx-auto">
@@ -101,6 +80,7 @@ export default function LeadForm() {
 
         <div className="relative group">
           <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-2xl blur opacity-20 group-hover:opacity-30 transition duration-300"></div>
+
           <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-2xl p-8 md:p-10">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>

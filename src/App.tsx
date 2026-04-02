@@ -1,3 +1,5 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import Hero from './components/Hero';
 import VideoSection from './components/VideoSection';
 import ProblemSection from './components/ProblemSection';
@@ -9,8 +11,10 @@ import LeadForm from './components/LeadForm';
 import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
+import ThankYouPage from './pages/ThankYouPage';
 
-function App() {
+
+function Home() {
   const scrollToForm = () => {
     const formElement = document.getElementById('lead-form');
     if (formElement) {
@@ -32,6 +36,17 @@ function App() {
       <Footer />
       <WhatsAppButton />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/thank-you" element={<ThankYouPage />} />
+      </Routes>
+    </Router>
   );
 }
 
