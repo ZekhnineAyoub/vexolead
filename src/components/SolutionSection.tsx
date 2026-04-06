@@ -28,7 +28,7 @@ export default function SolutionSection() {
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Nous construisons votre{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
+            <span className="bg-clip-text bg-gradient-to-r from-blue-400 text-red-400">
               machine à leads
             </span>
           </h2>

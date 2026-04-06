@@ -27,7 +27,7 @@ export default function HowItWorks() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Comment <span className="text-blue-400">ça fonctionne</span> ?
+            Comment <span className="text-red-400">ça fonctionne</span> ?
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             Un processus simple en 3 étapes pour transformer votre business

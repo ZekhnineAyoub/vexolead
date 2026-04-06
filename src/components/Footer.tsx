@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
-            <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 mb-4">
+            <h3 className="text-2xl font-bold  bg-clip-text bg-gradient-to-r text-red-400 mb-4">
               VexoLead
             </h3>
             <p className="text-gray-400 leading-relaxed">

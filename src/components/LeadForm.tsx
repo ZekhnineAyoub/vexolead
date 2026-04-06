@@ -71,7 +71,7 @@ export default function LeadForm() {
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Commencez <span className="text-blue-400">dès aujourd&apos;hui</span>
+            Commencez <span className="text-red-400">dès aujourd&apos;hui</span>
           </h2>
           <p className="text-xl text-gray-400">
             Remplissez ce formulaire et recevez votre plan d&apos;action personnalisé sous 24h

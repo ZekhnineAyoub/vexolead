@@ -25,7 +25,7 @@ export default function OfferSection({ onCtaClick }: OfferSectionProps) {
             <span>Places limitées ce mois-ci</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Système <span className="text-blue-400">clé en main</span> de génération de leads
+            Système <span className="text-red-400">clé en main</span> de génération de leads
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             Tout ce dont vous avez besoin pour générer des clients qualifiés automatiquement

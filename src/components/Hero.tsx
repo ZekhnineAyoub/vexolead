@@ -22,14 +22,14 @@ export default function Hero({ onCtaClick }: HeroProps) {
         <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
           <span className="text-white">Générez des clients qualifiés</span>
           <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
+          <span className=" bg-clip-text bg-gradient-to-r text-red-400">
             chaque semaine — automatiquement
           </span>
         </h1>
 
         <p className="text-xl md:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
           Nous créons pour vous un système d'acquisition complet{' '}
-          <span className="text-blue-400 font-semibold">(publicité + tunnel + automatisation)</span>
+          <span className="text-red-400 font-semibold">(publicité + tunnel + automatisation)</span>
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">

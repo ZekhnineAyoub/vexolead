@@ -18,7 +18,7 @@ export default function VideoSection() {
       <div className="max-w-5xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-12">
           Comment nous générons vos clients en{' '}
-          <span className="text-blue-400">30 jours</span>
+          <span className="text-red-400">30 jours</span>
         </h2>
 
         <div className="relative group">

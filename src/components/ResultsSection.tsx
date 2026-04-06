@@ -40,7 +40,7 @@ export default function ResultsSection() {
             <span>Résultats prouvés</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Ils ont transformé leur <span className="text-blue-400">business</span>
+            Ils ont transformé leur <span className="text-red-400">business</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             Rejoignez des centaines de coachs et consultants qui génèrent des clients qualifiés chaque semaine

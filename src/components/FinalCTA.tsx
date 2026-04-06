@@ -18,7 +18,7 @@ export default function FinalCTA({ onCtaClick }: FinalCTAProps) {
 
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
               Commencez à générer des clients{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
+              <span className="bg-clip-text bg-gradient-to-r  text-red-400">
                 dès aujourd'hui
               </span>
             </h2>
