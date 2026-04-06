@@ -1,9 +1,19 @@
+import { useEffect } from "react";
+import ReactPixel from "react-facebook-pixel";
 import { CheckCircle, MessageCircle, PhoneCall } from "lucide-react";
 
 export default function ThankYouPage() {
+
+  useEffect(() => {
+    // 🔥 Envoi de l'événement Lead
+    ReactPixel.track('Lead');
+    console.log('Lead envoyé depuis thank-you');
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-slate-50 to-white text-gray-800 px-6">
       <div className="bg-white shadow-xl rounded-2xl p-10 text-center max-w-2xl border border-gray-100">
+        
         <div className="flex justify-center mb-6">
           <div className="bg-green-100 p-4 rounded-full">
             <CheckCircle className="w-20 h-20 text-green-500" />

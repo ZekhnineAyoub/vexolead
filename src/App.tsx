@@ -1,4 +1,6 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import ReactPixel from 'react-facebook-pixel';
 
 import Hero from './components/Hero';
 import VideoSection from './components/VideoSection';
@@ -13,6 +15,20 @@ import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import ThankYouPage from './pages/ThankYouPage';
 
+// Initialisation une seule fois
+const pixelId = '1459572759178200';
+ReactPixel.init(pixelId);
+
+
+function PixelTracker() {
+  const location = useLocation();
+
+  useEffect(() => {
+    ReactPixel.pageView();
+  }, [location.pathname]);
+
+  return null;
+}
 
 function Home() {
   const scrollToForm = () => {
@@ -42,6 +58,7 @@ function Home() {
 function App() {
   return (
     <Router>
+      <PixelTracker />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/thank-you" element={<ThankYouPage />} />
