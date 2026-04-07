@@ -156,6 +156,7 @@ export default function LeadForm() {
                 <textarea
                   id="message"
                   name="message"
+                  required
                   rows={4}
                   value={formData.message}
                   onChange={handleChange}
