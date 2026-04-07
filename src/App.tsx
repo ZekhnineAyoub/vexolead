@@ -40,14 +40,13 @@ function Home() {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      <LeadForm />
       <Hero onCtaClick={scrollToForm} />
-      <VideoSection />
       <ProblemSection />
       <SolutionSection />
       <HowItWorks />
       <ResultsSection />
       <OfferSection onCtaClick={scrollToForm} />
-      <LeadForm />
       <FinalCTA onCtaClick={scrollToForm} />
       <Footer />
       <WhatsAppButton />
