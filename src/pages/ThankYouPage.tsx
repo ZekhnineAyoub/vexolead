@@ -73,7 +73,7 @@ export default function ThankYouPage() {
           </a>
 
           <a
-            href="https://wa.me/33622155379?text=Bonjour%2C%20je%20viens%20de%20soumettre%20ma%20demande%20sur%20VexoLead."
+            href="https://wa.me/33746574260?text=Bonjour%2C%20je%20viens%20de%20soumettre%20ma%20demande%20sur%20VexoLead."
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block px-6 py-3 bg-green-500 text-white font-medium rounded-lg shadow-md hover:bg-green-600 transition"
