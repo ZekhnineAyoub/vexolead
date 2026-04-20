@@ -20,15 +20,15 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-gray-400 hover:text-blue-400 transition-colors">
                 <Mail className="w-5 h-5" />
-                <span>contact@vexolead.fr</span>
+                <span>vexolead@gmail.com</span>
               </div>
               <div className="flex items-center gap-3 text-gray-400 hover:text-blue-400 transition-colors">
                 <Phone className="w-5 h-5" />
-                <span>+33 6 22 15 53 79</span>
+                <span>+33 7 46 57 42 60</span>
               </div>
               <div className="flex items-center gap-3 text-gray-400">
                 <MapPin className="w-5 h-5" />
-                <span>Paris, France</span>
+                <span> Rue Bahia, Marrakech 40130, Maroc</span>
               </div>
             </div>
           </div>
