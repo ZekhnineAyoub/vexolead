@@ -14,6 +14,7 @@ import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import ThankYouPage from './pages/ThankYouPage';
+import CalendlySection from './components/CalendlySection';
 
 // Initialisation une seule fois
 const pixelId = '1459572759178200';
@@ -62,6 +63,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/thank-you" element={<ThankYouPage />} />
+        <Route path="/meeting" element={<CalendlySection/>} />
       </Routes>
     </Router>
   );

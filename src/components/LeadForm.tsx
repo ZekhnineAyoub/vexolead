@@ -48,7 +48,7 @@ export default function LeadForm() {
         message: '',
       });
 
-      navigate('/thank-you');
+      navigate('/meeting');
     } catch (error) {
       console.error('Erreur formulaire:', error);
       alert("Une erreur s'est produite lors de l'envoi du formulaire.");
