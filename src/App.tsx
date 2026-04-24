@@ -41,7 +41,6 @@ function Home() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <LeadForm />
       <Hero onCtaClick={scrollToForm} />
       <ProblemSection />
       <SolutionSection />
@@ -50,6 +49,7 @@ function Home() {
       <OfferSection onCtaClick={scrollToForm} />
       <FinalCTA onCtaClick={scrollToForm} />
       <Footer />
+      <LeadForm />
       <WhatsAppButton />
     </div>
   );
