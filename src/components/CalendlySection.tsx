@@ -5,8 +5,10 @@ function CalendlySection() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    function handleMessage(e) {
-      if (e.data.event && e.data.event === "calendly.event_scheduled") {
+    function handleMessage(e:any) {
+      if (e.origin !== "https://calendly.com") return;
+
+      if (e.data?.event === "calendly.event_scheduled") {
         navigate("/thank-you");
       }
     }
@@ -31,7 +33,7 @@ function CalendlySection() {
 
         <div className="rounded-2xl overflow-hidden bg-white">
           <iframe
-            src="https://calendly.com/vexolead/new-meeting"
+            src="https://calendly.com/vexolead/new-meeting?embed_domain=www.vexolead.com&embed_type=Inline"
             width="100%"
             height="700"
             frameBorder="0"
