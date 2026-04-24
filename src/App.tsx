@@ -37,6 +37,7 @@ function Home() {
       formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
+  
 
   return (
     <div className="min-h-screen bg-black text-white">
