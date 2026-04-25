@@ -59,7 +59,7 @@ export default function LeadForm() {
       });
 
       if (isQualified) {
-        navigate('/thank-you');
+        navigate('/meeting');
       } else {
         navigate('/sorry');
       }
