@@ -45,8 +45,8 @@ export default function LeadForm() {
       }
 
       const isQualified =
-        formData.budgetReady === 'oui' &&
-        formData.startReady === 'oui';
+        ['oui_clair', 'oui_demarrer'].includes(formData.budgetReady) &&
+        ['cette_semaine', 'deux_semaines'].includes(formData.startReady);
 
       setFormData({
         name: '',
@@ -58,12 +58,7 @@ export default function LeadForm() {
         startReady: '',
       });
 
-      if (isQualified) {
-        navigate('/meeting');
-      } else {
-        navigate('/sorry');
-      }
-
+      navigate(isQualified ? '/meeting' : '/sorry');
     } catch (error) {
       console.error('Erreur formulaire:', error);
       alert("Une erreur s'est produite lors de l'envoi du formulaire.");
@@ -81,6 +76,9 @@ export default function LeadForm() {
     });
   };
 
+  const inputClass =
+    'w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition-all';
+
   return (
     <section id="lead-form" className="py-20 px-4">
       <div className="max-w-2xl mx-auto">
@@ -90,16 +88,16 @@ export default function LeadForm() {
           </h2>
 
           <p className="text-xl text-gray-400">
-            Répondez au formulaire pour savoir si nous pouvons vous accompagner.
+            Répondez à ces questions pour savoir si nous pouvons vous accompagner.
           </p>
         </div>
 
         <div className="relative group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-2xl blur opacity-20 group-hover:opacity-30 transition duration-300"></div>
+          <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-red-400 rounded-2xl blur opacity-20 group-hover:opacity-30 transition duration-300"></div>
 
           <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-2xl p-8 md:p-10">
             <form onSubmit={handleSubmit} className="space-y-6">
-
+              
               <div>
                 <label className="block text-white font-medium mb-2">
                   Nom complet <span className="text-red-400">*</span>
@@ -110,7 +108,7 @@ export default function LeadForm() {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg text-white"
+                  className={inputClass}
                   placeholder="Jean Dupont"
                 />
               </div>
@@ -126,7 +124,7 @@ export default function LeadForm() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg text-white"
+                    className={inputClass}
                     placeholder="jean@exemple.fr"
                   />
                 </div>
@@ -141,7 +139,7 @@ export default function LeadForm() {
                     required
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg text-white"
+                    className={inputClass}
                     placeholder="+225 07..."
                   />
                 </div>
@@ -157,50 +155,57 @@ export default function LeadForm() {
                   required
                   value={formData.business}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg text-white"
+                  className={inputClass}
                   placeholder="Ex: BTP, immobilier, coaching..."
                 />
               </div>
 
               <div>
                 <label className="block text-white font-medium mb-2">
-                  Êtes-vous prêt à investir 150 000 FCFA pour mettre en place un système qui vous aide à générer des prospects qualifiés ? <span className="text-red-400">*</span>
+                  Si nous vous montrons un plan clair pour générer plus de prospects qualifiés,
+                  êtes-vous prêt à investir à partir de 150 000 FCFA pour le mettre en place ?
+                  <span className="text-red-400"> *</span>
                 </label>
+
                 <select
                   name="budgetReady"
                   required
                   value={formData.budgetReady}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg text-white"
+                  className={inputClass}
                 >
                   <option value="">Sélectionnez une réponse</option>
-                  <option value="oui">Oui, je suis prêt à investir</option>
-                  <option value="non">Non, pas pour le moment</option>
+                  <option value="oui_demarrer">Oui, je suis prêt à démarrer</option>
+                  <option value="oui_clair">Oui, si la solution est claire</option>
                   <option value="reflexion">Je dois encore réfléchir</option>
+                  <option value="non">Non, pas pour le moment</option>
                 </select>
               </div>
 
               <div>
                 <label className="block text-white font-medium mb-2">
-                  Si votre profil est accepté, êtes-vous prêt à commencer immédiatement cette semaine ? <span className="text-red-400">*</span>
+                  Si votre profil est accepté, quand pouvez-vous démarrer la mise en place ?
+                  <span className="text-red-400"> *</span>
                 </label>
+
                 <select
                   name="startReady"
                   required
                   value={formData.startReady}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg text-white"
+                  className={inputClass}
                 >
                   <option value="">Sélectionnez une réponse</option>
-                  <option value="oui">Oui, je peux commencer immédiatement</option>
-                  <option value="non">Non, pas maintenant</option>
+                  <option value="cette_semaine">Cette semaine</option>
+                  <option value="deux_semaines">Dans les 2 prochaines semaines</option>
                   <option value="reflexion">Je suis encore en réflexion</option>
+                  <option value="non">Pas maintenant</option>
                 </select>
               </div>
 
               <div>
                 <label className="block text-white font-medium mb-2">
-                  Message
+                  Quel est votre objectif principal ?
                 </label>
                 <textarea
                   name="message"
@@ -208,8 +213,8 @@ export default function LeadForm() {
                   rows={4}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg text-white resize-none"
-                  placeholder="Parlez-nous de vos objectifs..."
+                  className={`${inputClass} resize-none`}
+                  placeholder="Ex: Je veux recevoir plus de demandes de devis, remplir mon agenda, vendre mes services..."
                 />
               </div>
 
@@ -232,7 +237,7 @@ export default function LeadForm() {
               </button>
 
               <p className="text-center text-gray-400 text-sm">
-                Nous travaillons uniquement avec des personnes prêtes à passer à l’action.
+                Nous acceptons uniquement les profils prêts à passer à l’action.
               </p>
 
             </form>
