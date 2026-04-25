@@ -237,7 +237,7 @@ export default function LeadForm() {
               </button>
 
               <p className="text-center text-gray-400 text-sm">
-                Nous acceptons uniquement les profils prêts à passer à l’action.
+                Nous ouvrons uniquement quelques places pour les professionnels prêts à développer sérieusement leur acquisition client.
               </p>
 
             </form>
