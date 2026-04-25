@@ -15,6 +15,7 @@ import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import ThankYouPage from './pages/ThankYouPage';
 import CalendlySection from './components/CalendlySection';
+import SorryPage from './pages/SorryPage';
 
 // Initialisation une seule fois
 const pixelId = '1459572759178200';
@@ -64,6 +65,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/thank-you" element={<ThankYouPage />} />
         <Route path="/meeting" element={<CalendlySection/>} />
+        <Route path="/sorry" element={<SorryPage/>} />
       </Routes>
     </Router>
   );
