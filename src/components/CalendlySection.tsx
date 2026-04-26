@@ -33,7 +33,7 @@ function CalendlySection() {
 
         <div className="rounded-2xl overflow-hidden bg-white">
           <iframe
-            src="https://calendly.com/vexolead/reunion-45-min?embed_domain=www.vexolead.com&embed_type=Inline"
+            src="https://calendly.com/vexolead/reunion-45-min-vexolead?embed_domain=www.vexolead.com&embed_type=Inline"
             width="100%"
             height="700"
             frameBorder="0"
