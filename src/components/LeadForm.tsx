@@ -97,7 +97,7 @@ export default function LeadForm() {
 
           <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-2xl p-8 md:p-10">
             <form onSubmit={handleSubmit} className="space-y-6">
-              
+
               <div>
                 <label className="block text-white font-medium mb-2">
                   Nom complet <span className="text-red-400">*</span>
@@ -163,7 +163,7 @@ export default function LeadForm() {
               <div>
                 <label className="block text-white font-medium mb-2">
                   Si nous vous montrons un plan clair pour générer plus de prospects qualifiés,
-                  êtes-vous prêt à investir à partir de 150 000 FCFA pour le mettre en place ?
+                  êtes-vous prêt à investir à partir de 150 000 FCFA ?
                   <span className="text-red-400"> *</span>
                 </label>
 
@@ -184,7 +184,7 @@ export default function LeadForm() {
 
               <div>
                 <label className="block text-white font-medium mb-2">
-                  Si votre profil est accepté, quand pouvez-vous démarrer la mise en place ?
+                  Si votre profil est accepté, quand pouvez-vous démarrer ?
                   <span className="text-red-400"> *</span>
                 </label>
 
@@ -214,8 +214,18 @@ export default function LeadForm() {
                   value={formData.message}
                   onChange={handleChange}
                   className={`${inputClass} resize-none`}
-                  placeholder="Ex: Je veux recevoir plus de demandes de devis, remplir mon agenda, vendre mes services..."
+                  placeholder="Ex: recevoir plus de demandes, remplir mon agenda..."
                 />
+              </div>
+
+              {/* 🔥 Message persuasion VSL */}
+              <div className="bg-red-500/10 border border-red-500/40 rounded-lg p-4 text-center">
+                <p className="text-red-300 font-semibold">
+                  ⚠️ Important : regardez la vidéo complète avant de soumettre
+                </p>
+                <p className="text-gray-300 text-sm mt-1">
+                  Les profils acceptés sont uniquement ceux qui ont compris le système présenté.
+                </p>
               </div>
 
               <button
@@ -237,7 +247,7 @@ export default function LeadForm() {
               </button>
 
               <p className="text-center text-gray-400 text-sm">
-                Nous ouvrons uniquement quelques places pour les professionnels prêts à développer sérieusement leur acquisition client.
+                Nous ouvrons uniquement quelques places pour les professionnels sérieux.
               </p>
 
             </form>
