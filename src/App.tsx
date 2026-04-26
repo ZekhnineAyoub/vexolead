@@ -44,9 +44,9 @@ function Home() {
   return (
     <div className="min-h-screen bg-black text-white">
       <Hero onCtaClick={scrollToForm} />
+      <LeadForm />
       <ProblemSection />
       <SolutionSection />
-      <LeadForm />
       <HowItWorks />
       <ResultsSection />
       <OfferSection onCtaClick={scrollToForm} />

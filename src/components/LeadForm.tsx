@@ -15,10 +15,17 @@ export default function LeadForm() {
     startReady: '',
   });
 
+  const [hasWatchedVideo, setHasWatchedVideo] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    if (!hasWatchedVideo) {
+      alert("Veuillez regarder la vidéo de présentation avant de soumettre le formulaire.");
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -35,6 +42,7 @@ export default function LeadForm() {
           message: formData.message,
           budgetReady: formData.budgetReady,
           startReady: formData.startReady,
+          hasWatchedVideo,
         }),
       });
 
@@ -57,6 +65,8 @@ export default function LeadForm() {
         budgetReady: '',
         startReady: '',
       });
+
+      setHasWatchedVideo(false);
 
       navigate(isQualified ? '/meeting' : '/sorry');
     } catch (error) {
@@ -97,7 +107,6 @@ export default function LeadForm() {
 
           <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-2xl p-8 md:p-10">
             <form onSubmit={handleSubmit} className="space-y-6">
-              
               <div>
                 <label className="block text-white font-medium mb-2">
                   Nom complet <span className="text-red-400">*</span>
@@ -218,9 +227,25 @@ export default function LeadForm() {
                 />
               </div>
 
+              <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+                <label className="flex items-start gap-3 cursor-pointer text-left">
+                  <input
+                    type="checkbox"
+                    checked={hasWatchedVideo}
+                    onChange={(e) => setHasWatchedVideo(e.target.checked)}
+                    className="mt-1 w-5 h-5 accent-red-500"
+                    required
+                  />
+                  <span className="text-gray-300 text-sm leading-relaxed">
+                    J’ai bien regardé la vidéo de présentation avant de remplir ce formulaire.
+                    <span className="text-red-400 font-semibold"> *</span>
+                  </span>
+                </label>
+              </div>
+
               <button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || !hasWatchedVideo}
                 className="w-full py-4 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 disabled:from-gray-600 disabled:to-gray-700 text-white rounded-lg font-bold text-lg transition-all duration-300 shadow-lg hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 {isSubmitting ? (
@@ -239,7 +264,6 @@ export default function LeadForm() {
               <p className="text-center text-gray-400 text-sm">
                 Nous ouvrons uniquement quelques places pour les professionnels prêts à développer sérieusement leur acquisition client.
               </p>
-
             </form>
           </div>
         </div>
