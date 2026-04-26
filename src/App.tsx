@@ -52,7 +52,7 @@ function Home() {
       <FinalCTA onCtaClick={scrollToForm} />
       <Footer />
       <LeadForm />
-      <WhatsAppButton />
+      {/*<WhatsAppButton />*/}
     </div>
   );
 }
