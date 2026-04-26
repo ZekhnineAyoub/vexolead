@@ -1,4 +1,5 @@
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { useRef } from 'react';
 import vslVideo from '../assets/vsl-vexolead.mp4';
 
 interface HeroProps {
@@ -6,6 +7,15 @@ interface HeroProps {
 }
 
 export default function Hero({ onCtaClick }: HeroProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleUnmute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = false;
+      videoRef.current.play();
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
       {/* Background */}
@@ -32,17 +42,23 @@ export default function Hero({ onCtaClick }: HeroProps) {
         </h1>
 
         {/* Subtitle */}
-        <p className="text-xl md:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-xl md:text-2xl text-gray-400 mb-8 max-w-3xl mx-auto leading-relaxed">
           Nous créons pour vous un système d'acquisition complet{' '}
           <span className="text-red-400 font-semibold">
             (publicité + tunnel + automatisation)
           </span>
         </p>
 
-        {/* 🎥 VSL VIDEO */}
-        <div className="mb-12">
+        {/* 🔊 Message */}
+        <p className="text-red-400 font-semibold mb-4 animate-pulse">
+          🔊 Activez le son pour comprendre comment générer des clients automatiquement
+        </p>
+
+        {/* 🎥 VIDEO */}
+        <div className="mb-6">
           <div className="relative max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-white/10">
             <video
+              ref={videoRef}
               src={vslVideo}
               controls
               autoPlay
@@ -51,10 +67,17 @@ export default function Hero({ onCtaClick }: HeroProps) {
               playsInline
               className="w-full h-full object-cover"
             />
-            {/* Overlay léger pour effet premium */}
             <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
           </div>
         </div>
+
+        {/* 🔊 Bouton activer son */}
+        <button
+          onClick={handleUnmute}
+          className="mb-12 px-6 py-3 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 transition"
+        >
+          🔊 Activer le son
+        </button>
 
         {/* CTA */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
