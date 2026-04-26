@@ -224,7 +224,7 @@ export default function LeadForm() {
                   ⚠️ Important : regardez la vidéo complète avant de soumettre
                 </p>
                 <p className="text-gray-300 text-sm mt-1">
-                  Les profils acceptés sont uniquement ceux qui ont compris le système présenté.
+                  Les profils acceptés sont uniquement ceux qui ont regardé la vidéo complète.
                 </p>
               </div>
 
