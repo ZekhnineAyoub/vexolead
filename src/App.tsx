@@ -46,12 +46,12 @@ function Home() {
       <Hero onCtaClick={scrollToForm} />
       <ProblemSection />
       <SolutionSection />
+      <LeadForm />
       <HowItWorks />
       <ResultsSection />
       <OfferSection onCtaClick={scrollToForm} />
       <FinalCTA onCtaClick={scrollToForm} />
       <Footer />
-      <LeadForm />
       {/*<WhatsAppButton />*/}
     </div>
   );
