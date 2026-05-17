@@ -37,7 +37,7 @@ export default function LeadForm() {
       });
 
       if (response.ok) {
-        navigate('/merci');
+        navigate('/thank-you');
       } else {
         alert('Une erreur est survenue.');
       }
@@ -50,7 +50,7 @@ export default function LeadForm() {
   };
 
   return (
-    <section className="py-20 bg-black px-4">
+    <section id="lead-form" className="py-20 bg-black px-4">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-14">
           <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
