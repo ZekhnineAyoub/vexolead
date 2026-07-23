@@ -1,5 +1,10 @@
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useRef } from 'react';
+import {
+  InlineWidget,
+  useCalendlyEventListener,
+} from 'react-calendly';
+import { useNavigate } from 'react-router-dom';
 import vslVideo from '../assets/vsl-vexolead.mp4';
 
 interface HeroProps {
@@ -8,55 +13,83 @@ interface HeroProps {
 
 export default function Hero({ onCtaClick }: HeroProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const calendlyRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+
+  // Redirection uniquement après confirmation du rendez-vous
+  useCalendlyEventListener({
+    onEventScheduled: () => {
+      navigate('/thank-you');
+    },
+  });
 
   const handleUnmute = () => {
     if (videoRef.current) {
       videoRef.current.muted = false;
-      videoRef.current.play();
+
+      videoRef.current.play().catch((error) => {
+        console.error('Impossible de lire la vidéo :', error);
+      });
     }
   };
 
+  const scrollToCalendly = () => {
+    calendlyRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  };
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-500/10 via-transparent to-transparent"></div>
+    <section className="relative overflow-hidden px-4 py-20">
+      {/* Arrière-plan */}
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-500/10 via-transparent to-transparent" />
+
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute left-10 top-20 h-72 w-72 animate-pulse rounded-full bg-blue-500/20 blur-3xl" />
+
+        <div className="absolute bottom-20 right-10 h-96 w-96 animate-pulse rounded-full bg-blue-600/10 blur-3xl delay-1000" />
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto text-center">
+      <div className="relative z-10 mx-auto max-w-5xl text-center">
         {/* Badge */}
-        <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm font-medium">
-          <CheckCircle2 className="w-4 h-4" />
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-4 py-2 text-sm font-medium text-blue-400">
+          <CheckCircle2 className="h-4 w-4" />
+
           <span>+500 leads générés ce mois-ci</span>
         </div>
 
-        {/* Title */}
-        <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
-          <span className="text-white">Générez des clients qualifiés</span>
+        {/* Titre */}
+        <h1 className="mb-6 text-3xl font-bold leading-tight md:text-5xl">
+          <span className="text-white">
+            Générez des clients qualifiés
+          </span>
+
           <br />
-          <span className="bg-clip-text bg-gradient-to-r text-red-400">
+
+          <span className="bg-gradient-to-r bg-clip-text text-red-400">
             chaque semaine — automatiquement
           </span>
         </h1>
 
-        {/* Subtitle */}
-        <p className="text-xl md:text-2xl text-gray-400 mb-8 max-w-3xl mx-auto leading-relaxed">
-          Nous créons pour vous un système d'acquisition complet{' '}
-          <span className="text-red-400 font-semibold">
+        {/* Sous-titre */}
+        <p className="mx-auto mb-8 max-w-3xl text-xl leading-relaxed text-gray-400 md:text-2xl">
+          Nous créons pour vous un système d&apos;acquisition complet{' '}
+
+          <span className="font-semibold text-red-400">
             (publicité + tunnel + automatisation)
           </span>
         </p>
 
-        {/* 🔊 Message */}
-        <p className="text-red-400 font-semibold mb-4 animate-pulse">
-          🔊 Activez le son pour comprendre comment générer des clients automatiquement
+        {/* Message son */}
+        <p className="mb-4 animate-pulse font-semibold text-red-400">
+          🔊 Activez le son pour comprendre comment générer des clients
+          automatiquement
         </p>
 
-        {/* 🎥 VIDEO */}
+        {/* Vidéo */}
         <div className="mb-6">
-          <div className="relative max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+          <div className="relative mx-auto max-w-4xl overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
             <video
               ref={videoRef}
               src={vslVideo}
@@ -65,56 +98,103 @@ export default function Hero({ onCtaClick }: HeroProps) {
               muted
               loop
               playsInline
-              className="w-full h-full object-cover"
+              className="h-full w-full object-cover"
             />
-            <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
+
+            <div className="pointer-events-none absolute inset-0 bg-black/20" />
           </div>
         </div>
 
-        {/* 🔊 Bouton activer son */}
+        {/* Bouton son */}
         <button
+          type="button"
           onClick={handleUnmute}
-          className="mb-12 px-6 py-3 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 transition"
+          className="mb-12 rounded-lg bg-red-500 px-6 py-3 font-semibold text-white transition hover:bg-red-600"
         >
           🔊 Activer le son
         </button>
 
-        {/* CTA */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+        {/* Boutons CTA */}
+        <div className="mb-16 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <button
+            type="button"
             onClick={onCtaClick}
-            className="group px-8 py-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold text-lg transition-all duration-300 shadow-lg shadow-blue-500/50 hover:shadow-blue-500/70 hover:scale-105 flex items-center gap-2"
+            className="group flex items-center gap-2 rounded-lg bg-blue-500 px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-blue-500/50 transition-all duration-300 hover:scale-105 hover:bg-blue-600 hover:shadow-blue-500/70"
           >
             Recevoir mes premiers leads
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+
+            <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
           </button>
 
           <button
-            onClick={onCtaClick}
-            className="px-8 py-4 bg-transparent border-2 border-blue-500/50 hover:border-blue-500 text-white rounded-lg font-semibold text-lg transition-all duration-300 hover:bg-blue-500/10"
+            type="button"
+            onClick={scrollToCalendly}
+            className="rounded-lg border-2 border-blue-500/50 bg-transparent px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:border-blue-500 hover:bg-blue-500/10"
           >
             Réserver un appel
           </button>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+        {/* Statistiques */}
+        <div className="mx-auto mb-24 grid max-w-4xl grid-cols-2 gap-8 md:grid-cols-4">
           {[
             { label: 'Leads générés', value: '+15K' },
             { label: 'Clients actifs', value: '250+' },
             { label: 'ROI moyen', value: 'x4.2' },
             { label: 'Taux de satisfaction', value: '98%' },
-          ].map((stat, index) => (
+          ].map((stat) => (
             <div
-              key={index}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-4"
+              key={stat.label}
+              className="rounded-lg border border-white/10 bg-white/5 p-4 backdrop-blur-sm"
             >
-              <div className="text-3xl font-bold text-blue-400 mb-1">
+              <div className="mb-1 text-3xl font-bold text-blue-400">
                 {stat.value}
               </div>
-              <div className="text-sm text-gray-400">{stat.label}</div>
+
+              <div className="text-sm text-gray-400">
+                {stat.label}
+              </div>
             </div>
           ))}
+        </div>
+
+        {/* Calendly */}
+        <div
+          ref={calendlyRef}
+          id="calendly"
+          className="scroll-mt-8"
+        >
+          <div className="mb-8">
+            <span className="inline-block rounded-full bg-blue-500/10 px-4 py-2 text-sm font-semibold text-blue-400">
+              Consultation gratuite et sans engagement
+            </span>
+
+            <h2 className="mt-5 text-3xl font-bold text-white md:text-4xl">
+              Réservez votre appel stratégique
+            </h2>
+
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
+              Choisissez un créneau pour discuter de votre activité et voir
+              comment obtenir davantage de prospects qualifiés.
+            </p>
+          </div>
+
+          <div className="overflow-hidden rounded-2xl border border-white/10 bg-white shadow-2xl">
+            <InlineWidget
+              url="https://calendly.com/vexolead/reunion-45-min-vexolead"
+              styles={{
+                width: '100%',
+                height: '750px',
+              }}
+              pageSettings={{
+                backgroundColor: 'ffffff',
+                hideEventTypeDetails: false,
+                hideLandingPageDetails: false,
+                primaryColor: '2563eb',
+                textColor: '111827',
+              }}
+            />
+          </div>
         </div>
       </div>
     </section>
