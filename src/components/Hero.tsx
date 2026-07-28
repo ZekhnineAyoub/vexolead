@@ -159,43 +159,6 @@ export default function Hero({ onCtaClick }: HeroProps) {
         </div>
 
         {/* Calendly */}
-        <div
-          ref={calendlyRef}
-          id="calendly"
-          className="scroll-mt-8"
-        >
-          <div className="mb-8">
-            <span className="inline-block rounded-full bg-blue-500/10 px-4 py-2 text-sm font-semibold text-blue-400">
-              Consultation gratuite et sans engagement
-            </span>
-
-            <h2 className="mt-5 text-3xl font-bold text-white md:text-4xl">
-              Réservez votre appel stratégique
-            </h2>
-
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
-              Choisissez un créneau pour discuter de votre activité et voir
-              comment obtenir davantage de prospects qualifiés.
-            </p>
-          </div>
-
-          <div className="overflow-hidden rounded-2xl border border-white/10 bg-white shadow-2xl">
-            <InlineWidget
-              url="https://calendly.com/vexolead/reunion-45-min-vexolead"
-              styles={{
-                width: '100%',
-                height: '750px',
-              }}
-              pageSettings={{
-                backgroundColor: 'ffffff',
-                hideEventTypeDetails: false,
-                hideLandingPageDetails: false,
-                primaryColor: '2563eb',
-                textColor: '111827',
-              }}
-            />
-          </div>
-        </div>
       </div>
     </section>
   );
