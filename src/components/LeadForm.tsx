@@ -116,7 +116,7 @@ export default function LeadForm() {
                 type="text"
                 value={formData.businessActivity}
                 onChange={(e) => setFormData({ ...formData, businessActivity: e.target.value })}
-                placeholder="Ex: Centre de formation, immobilier, coaching..."
+                placeholder="Description de votre activité"
                 className="w-full bg-[#0f172a] border border-white/10 rounded-xl px-5 py-4 text-white placeholder:text-gray-500 focus:outline-none focus:border-red-500"
                 required
               />

@@ -80,7 +80,7 @@ export default function Hero({ onCtaClick }: HeroProps) {
         </button>
 
         {/* CTA */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
           <button
             onClick={onCtaClick}
             className="group px-8 py-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold text-lg transition-all duration-300 shadow-lg shadow-blue-500/50 hover:shadow-blue-500/70 hover:scale-105 flex items-center gap-2"
