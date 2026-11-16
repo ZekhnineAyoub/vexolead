@@ -63,35 +63,7 @@ export default function ResultsSection() {
           })}
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="group bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-gray-700 hover:border-blue-500/50 rounded-xl p-6 transition-all duration-300 hover:transform hover:-translate-y-2"
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  className="w-14 h-14 rounded-full object-cover border-2 border-blue-500/50"
-                />
-                <div>
-                  <div className="text-white font-semibold">{testimonial.name}</div>
-                  <div className="text-sm text-gray-400">{testimonial.role}</div>
-                </div>
-              </div>
-              <div className="flex gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                ))}
-              </div>
-              <p className="text-gray-300 leading-relaxed mb-4">"{testimonial.text}"</p>
-              <div className="inline-block px-3 py-1 bg-blue-500/20 border border-blue-500/30 rounded-full text-blue-400 text-sm font-semibold">
-                {testimonial.metric}
-              </div>
-            </div>
-          ))}
-        </div>
+        
       </div>
     </section>
   );
