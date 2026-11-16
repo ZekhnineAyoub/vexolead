@@ -49,36 +49,6 @@ export default function Hero({ onCtaClick }: HeroProps) {
           </span>
         </p>
 
-        {/* 🔊 Message */}
-        <p className="text-red-400 font-semibold mb-4 animate-pulse">
-          🔊 Activez le son pour comprendre comment générer des clients automatiquement
-        </p>
-
-        {/* 🎥 VIDEO */}
-        <div className="mb-6">
-          <div className="relative max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-            <video
-              ref={videoRef}
-              src={vslVideo}
-              controls
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
-          </div>
-        </div>
-
-        {/* 🔊 Bouton activer son */}
-        <button
-          onClick={handleUnmute}
-          className="mb-12 px-6 py-3 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 transition"
-        >
-          🔊 Activer le son
-        </button>
-
         {/* CTA */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
           <button
